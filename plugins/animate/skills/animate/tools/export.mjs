@@ -175,7 +175,9 @@ if (!flag('no-mux') && !onlyAudio && full) {
     '-framerate', String(meta.fps), '-i', path.join(FR, 'f%04d.png'),
     ...(fs.existsSync(wavPath) && !flag('no-audio') ? ['-i', wavPath, '-map', '0:v:0', '-map', '1:a:0', '-c:a', 'aac', '-b:a', '192k'] : ['-map', '0:v:0']),
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '14', '-pix_fmt', 'yuv420p', '-r', String(meta.fps),
-    '-frames:v', String(meta.frames), '-movflags', '+faststart', out];
+    // no -frames:v here: ffmpeg ends the whole encode when the video hits its frame count,
+    // which cut the audio early (grow lost its last 2.5s). The f%04d.png sequence ends on its own.
+    '-movflags', '+faststart', out];
   const r = spawnSync('ffmpeg', args, { stdio: 'inherit' });
   if (r.status !== 0) { console.error('ffmpeg failed'); process.exit(1); }
   console.log('wrote', out);
