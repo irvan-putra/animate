@@ -16,6 +16,7 @@
   .card p { font-size: 0.92rem; color: #6b5d52; line-height: 1.5; margin: 6px 0 12px; }
   video { display: block; width: min(100%, 340px); margin: 0 auto; border-radius: 10px; background: #1b1714; }
   .links { margin-top: 12px; font-size: 0.92rem; display: flex; flex-wrap: wrap; gap: 14px; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; }
   a { color: #4c6fb5; }
   footer { font-size: 0.85rem; color: #8a7d6e; margin-top: 8px; line-height: 1.6; }
   code { background: #efe6d2; border-radius: 4px; padding: 1px 5px; font-size: 0.85em; }
@@ -42,6 +43,21 @@
     <video src="history-of-ai.mp4" controls loop muted playsinline preload="metadata"></video>
     <div class="links">
       <a href="https://github.com/cth9191/animate/tree/main/plugins/animate/skills/animate/examples/history-of-ai">Example source (upstream)</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Try it yourself</h2>
+    <p>Animate is a <a href="https://code.claude.com/docs/en/plugins">Claude Code plugin</a>. It renders with Node 18+, Playwright's Chromium and ffmpeg (see the repo README), so it needs a real machine to run on. The full render pipeline has not been verified in ordinary Claude chat.</p>
+    <p><b>On a computer with Claude Code:</b></p>
+    <pre><code>/plugin marketplace add cth9191/animate
+/plugin install animate@animate</code></pre>
+    <p>This repo ships a <code>.claude-plugin/marketplace.json</code>, so it registers as a marketplace directly. Then install the requirements: <code>npm i -g playwright &amp;&amp; npx playwright install chromium</code>, and ffmpeg on your PATH.</p>
+    <p><b>From your phone:</b> open the Code tab in the Claude app (iOS/Android, signed in with your claude.ai account). You can steer a session running on your computer (<a href="https://code.claude.com/docs/en/remote-control">Remote Control</a>), or start a <a href="https://code.claude.com/docs/en/claude-code-on-the-web">cloud session</a> on this repo (if your plan and organization allow cloud sessions; GitHub connected). Note: cloud sessions don't load installed plugins and have no plugin browser (<a href="https://code.claude.com/docs/en/plugins/install">docs</a>), so there ask the session to use the skill folder directly (<code>plugins/animate/skills/animate</code>) and to install the requirements on its VM. The cloud-session setup below is documentation-based and has not been run-tested here.</p>
+    <div class="links">
+      <a href="https://code.claude.com/docs/en/mobile">Claude Code on mobile</a>
+      <a href="https://code.claude.com/docs/en/plugins/install">Install plugins</a>
+      <a href="https://github.com/cth9191/animate#install">Repo README</a>
     </div>
   </section>
 
