@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grow - a tiny seed's story</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #1b1714; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; }
+  canvas { height: min(100vh, calc(100vw * 16 / 9)); width: auto; aspect-ratio: 9 / 16; display: block; cursor: pointer; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+"use strict";
+// =====================================================================
+//  GROW — 9:16, 16.0s @ 120 BPM, 24fps. Four eras joined by three shape morphs
+//  (the sun becomes a rain cloud, the cloud becomes the tree's crown, the fruit becomes a new seed).
+//  Build: node <skill>/tools/build.mjs <this piece dir>
+//  Open index.html in a browser to preview (click to hear the score; ?t=2.5 freezes a frame).
+// =====================================================================
+const FPS = 24, W = 1080, H = 1920;
+const BPM = 120, BEAT = 60 / BPM, E8 = BEAT / 2, E16 = BEAT / 4;   // 0.5 / 0.25 / 0.125s = 12 / 6 / 3 frames
+const DURATION = 16.0;
+const NFRAMES = Math.round(DURATION * FPS);
+const LOOP_T = NFRAMES / FPS;
+const SAFE = { top: 240, bottom: 420, right: 140 };          // 9:16 platform UI; keep content in x 60–940, y 250–1500
+const HAND = '"Ink Free", "Segoe Print", "Bradley Hand", "Chalkboard SE", "Comic Sans MS", "Comic Neue", cursive';   // local handwriting fonts: Windows, macOS, Linux
+const CX = 470;                                               // caption centre (left of the right-hand UI strip)
+
+// eras: [t0, t1, scene]. Boundaries with a BRIDGE (src/bridges.js) morph; the rest are hard cuts.
+const ERA_LIST = [
+  [0, 4, () => sceneSeed()],
+  [4, 8, () => sceneRain()],
+  [8, 12, () => sceneTree()],
+  [12, 16, () => sceneAgain()],
+];
+const SHOTS = [
+  //  key        era  t0    t1    title
+  ['seed',       0,   0.0,  4.0,  'a tiny seed'],
+  ['rain',       1,   4.0,  8.0,  'the sun becomes a rain cloud; it reaches up'],
+  ['tree',       2,   8.0, 12.0,  'the cloud becomes the tree; it becomes a home'],
+  ['again',      3,  12.0, 16.0,  'the fruit becomes a new seed; it starts again'],
+];
+const TIMELINE = {
+  width: W, height: H, fps: FPS, bpm: BPM, duration: DURATION, frames: NFRAMES, loop: LOOP_T, safe: SAFE,
+  format: 'morph-chain',
+  shots: SHOTS.map(([key, era, t0, t1, title], i) => ({ id: i + 1, key, era, t0, t1, title })),
+  cuts: [],                       // no hard cuts: every boundary morphs
+  morphs: [4.0, 8.0, 12.0],       // morph bridge centres (seconds, on the 8th grid)
+  cues: { plant: 1.0, worm: 2.5, rain: 4.5, sprout: 5.5, birds: 8.5, blossoms: 9.5, fruit: 10.5, gift: 12.0, leaf: 13.2 },
+  acts: [
+    { name: '1 Seed',  role: 'build',   t0:  0.0, t1:  4.0 },
+    { name: '2 Rain',  role: 'journey', t0:  4.0, t1:  8.0 },
+    { name: '3 Tree',  role: 'peak',    t0:  8.0, t1: 11.5 },
+    { name: '4 Hush',  role: 'silence', t0: 11.5, t1: 12.0 },
+    { name: '5 Again', role: 'gift',    t0: 12.0, t1: 16.0 },
+  ],
+  // the storyboard: one key frame per beat
+  board: [
+    { t:  2.5, title: 'a tiny seed', sound: 'a soft pad; a rising fifth as the seed lands', next: 'the sun becomes a rain cloud' },
+    { t:  6.5, title: 'it reaches up', sound: 'rain patter plucks; the motif again, a third up', next: 'the cloud becomes the tree' },
+    { t: 10.0, title: 'it becomes a home', sound: 'the fullest pad, bass, bird blips, blossom chimes', next: 'a hush, then the fruit becomes a seed' },
+    { t: 14.0, title: 'and it starts again', sound: 'a stab + sub on the hush, then a warm chord; the motif returns', next: 'loops' },
+  ],
+  narration: [],
+};
+window.TIMELINE = TIMELINE;

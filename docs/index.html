@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animate - video demos</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f6f1e7; color: #2a1d18; }
+  main { max-width: 720px; margin: 0 auto; padding: 32px 18px 64px; }
+  h1 { font-size: 1.6rem; margin: 0 0 6px; }
+  .sub { color: #6b5d52; margin: 0 0 28px; font-size: 0.98rem; line-height: 1.5; }
+  .card { background: #fffdf8; border: 1px solid #e4d9c4; border-radius: 14px; padding: 18px; margin: 0 0 26px; box-shadow: 0 2px 10px rgba(60,40,20,0.06); }
+  .card h2 { font-size: 1.15rem; margin: 0 0 4px; }
+  .card p { font-size: 0.92rem; color: #6b5d52; line-height: 1.5; margin: 6px 0 12px; }
+  video { display: block; width: min(100%, 340px); margin: 0 auto; border-radius: 10px; background: #1b1714; }
+  .links { margin-top: 12px; font-size: 0.92rem; display: flex; flex-wrap: wrap; gap: 14px; }
+  a { color: #4c6fb5; }
+  footer { font-size: 0.85rem; color: #8a7d6e; margin-top: 8px; line-height: 1.6; }
+  code { background: #efe6d2; border-radius: 4px; padding: 1px 5px; font-size: 0.85em; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Animate - video demos</h1>
+  <p class="sub">Videos generated with the <a href="https://github.com/cth9191/animate">animate</a> skill: one canvas, drawn and scored procedurally in code, rendered to MP4 with a headless browser and ffmpeg. No source image, audio or video assets; visuals and score are generated from code.</p>
+
+  <section class="card">
+    <h2>Grow - a tiny seed's story</h2>
+    <p>An original 16-second sample in the built-in cut-paper style. A seed becomes a sprout, a tree, and a seed again; the score (synthesized in code) goes quiet for a breath before the payoff, then lands on it. 1080x1920, 24 fps.</p>
+    <video src="grow.mp4" controls loop muted playsinline preload="metadata"></video>
+    <div class="links">
+      <a href="grow/index.html">Interactive canvas version (loops, click for sound)</a>
+      <a href="https://github.com/irvan-putra/animate/tree/main/pieces/grow">Piece source</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>A short history of AI</h2>
+    <p>The upstream repo's own showcase example (<code>examples/history-of-ai</code>), reproduced here with the same pipeline: 60 seconds, 15 worlds joined by 13 shape morphs, from Dartmouth 1956 to 2025. 1080x1920, 24 fps.</p>
+    <video src="history-of-ai.mp4" controls loop muted playsinline preload="metadata"></video>
+    <div class="links">
+      <a href="https://github.com/cth9191/animate/tree/main/plugins/animate/skills/animate/examples/history-of-ai">Example source (upstream)</a>
+    </div>
+  </section>
+
+  <footer>
+    Fork: <a href="https://github.com/irvan-putra/animate">irvan-putra/animate</a> &middot;
+    Upstream: <a href="https://github.com/cth9191/animate">cth9191/animate</a> (MIT) &middot;
+    Made with the repo's own <code>tools/build.mjs</code> and <code>tools/export.mjs</code> - no other generator.
+  </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "grow",
+  "title": "Grow - a tiny seed's story",
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 24,
+    "bpm": 120,
+    "duration": 16.0,
+    "frames": 384
+  },
+  "storyFormat": "F2 morph chain (eras joined by shape morphs)",
+  "style": "cut-paper",
+  "review": {
+    "safe": {
+      "top": 240,
+      "bottom": 420,
+      "right": 140
+    },
+    "refs": {},
+    "textIgnore": []
+  }
+}
