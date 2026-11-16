@@ -102,6 +102,10 @@ Open any built `index.html` in a browser to preview it (click to hear the score;
 
 `plugins/animate/skills/animate/examples/history-of-ai/` is a complete 60-second cut-paper piece: 15 eras from Turing's "Can machines think?" (1950) to Claude Code (2025), a small orange "spark" that gains a ray each era, 13 shape-morph transitions, one hard cut on the payoff, and a synthesized score. Build it with `node plugins/animate/skills/animate/tools/build.mjs plugins/animate/skills/animate/examples/history-of-ai`, then export it.
 
+## Research notes
+
+- [Using a Claude Code plugin from a cloud session](docs/cloud-session-plugins.md) - a reading of the official page, not a tested setup.
+
 ## License
 
 MIT
