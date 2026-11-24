@@ -1,3 +1,17 @@
+# animate
+
+A fork of [cth9191/animate](https://github.com/cth9191/animate), a Claude Code skill for procedural canvas animation.
+
+What this fork adds on top of upstream:
+
+- **Generated video demos with a player site** at <https://vanipy.com/animate/> - a 60-second history-of-AI piece and a "Grow" piece, exported to MP4 and playable in the browser.
+- **Setup notes for reproducing the demos** and audio fixes for the demo pieces.
+- **One research note**: [using a Claude Code plugin from a cloud session](docs/cloud-session-plugins.md) - a reading of the official page, not a tested setup.
+
+The skill itself is unchanged from upstream; the original upstream README follows below. The fork's additions (demo videos, player site, notes) were built with AI assistance (Instinct and others). Not everything has been reviewed by Irvan.
+
+---
+
 # Animate — procedural animation in any style, for Claude Code
 
 A Claude Code skill that makes short animated videos entirely in code: one `<canvas>`, drawn and scored procedurally, deterministic frame by frame, rendered to MP4 with a headless browser and ffmpeg. Explainers, histories, little stories — in one of the built-in styles, or in a new look matched from your own references.
